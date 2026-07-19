@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no"
+  />
+
+  <meta name="theme-color" content="#090b22" />
+
+  <meta
+    name="description"
+    content="SENA Neon Ağ - Mobil uyumlu eğlenceli web oyunu"
+  />
+
+  <title>SENA — Neon Ağ</title>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <main id="app">
+
+    <!-- GİRİŞ EKRANI -->
+    <section id="loginScreen" class="screen login-screen">
+
+      <div class="background-grid"></div>
+      <div class="background-glow glow-one"></div>
+      <div class="background-glow glow-two"></div>
+
+      <div class="login-container">
+
+        <div class="logo-area">
+          <div class="character-logo">
+            <div class="character-hair"></div>
+
+            <div class="character-face">
+              <div class="character-eyes">
+                <span></span>
+                <span></span>
+              </div>
+
+              <div class="character-mouth"></div>
+            </div>
+
+            <div class="character-body"></div>
+          </div>
+
+          <h1>SENA</h1>
+          <p class="logo-subtitle">NEON AĞ</p>
+        </div>
+
+        <div class="login-card">
+          <p class="eyebrow">DİJİTAL MACERA</p>
+
+          <h2>Neon ağına katıl</h2>
+
+          <p class="intro-text">
+            Enerjileri topla, kırmızı glitch nesnelerinden kaç ve en yüksek
+            skoru yap.
+          </p>
+
+          <label for="playerName">Oyuncu adı</label>
+
+          <input
+            id="playerName"
+            type="text"
+            maxlength="15"
+            placeholder="Adını yaz"
+            autocomplete="off"
+          />
+
+          <button id="startButton" class="primary-button" type="button">
+            <span>OYUNU BAŞLAT</span>
+            <span class="button-arrow">›</span>
+          </button>
+
+          <div class="feature-list">
+            <span>Mobil uyumlu</span>
+            <span>Dokunmatik kontrol</span>
+            <span>Rekor sistemi</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- OYUN EKRANI -->
+    <section id="gameScreen" class="screen game-screen hidden">
+
+      <header class="game-header">
+
+        <div class="mini-brand">
+          <div class="mini-logo">S</div>
+
+          <div class="mini-brand-text">
+            <strong>SENA</strong>
+            <span id="welcomeText">Neon Ağ</span>
+          </div>
+        </div>
+
+        <div class="header-stats">
+
+          <div class="stat-box">
+            <span>SKOR</span>
+            <strong id="scoreValue">0</strong>
+          </div>
+
+          <div class="stat-box">
+            <span>REKOR</span>
+            <strong id="bestValue">0</strong>
+          </div>
+
+          <button
+            id="pauseButton"
+            class="icon-button"
+            type="button"
+            aria-label="Oyunu duraklat"
+          >
+            Ⅱ
+          </button>
+
+          <button
+            id="soundButton"
+            class="icon-button"
+            type="button"
+            aria-label="Sesi kapat"
+          >
+            ♪
+          </button>
+
+        </div>
+      </header>
+
+      <div class="game-area">
+
+        <canvas id="gameCanvas"></canvas>
+
+        <div id="countdown" class="countdown hidden"></div>
+
+        <!-- DURAKLATMA -->
+        <div id="pauseOverlay" class="overlay hidden">
+
+          <div class="modal-card">
+            <p class="eyebrow">AĞ BEKLEMEDE</p>
+
+            <h2>Oyun duraklatıldı</h2>
+
+            <button
+              id="resumeButton"
+              class="primary-button"
+              type="button"
+            >
+              DEVAM ET
+            </button>
+
+            <button
+              id="homeFromPauseButton"
+              class="secondary-button"
+              type="button"
+            >
+              ANA MENÜ
+            </button>
+          </div>
+
+        </div>
+
+        <!-- OYUN SONU -->
+        <div id="gameOverOverlay" class="overlay hidden">
+
+          <div class="modal-card">
+
+            <div class="result-logo">S</div>
+
+            <p class="eyebrow">BAĞLANTI KOPTU</p>
+
+            <h2>Tur tamamlandı</h2>
+
+            <div class="result-grid">
+
+              <div class="result-box">
+                <span>Skor</span>
+                <strong id="finalScore">0</strong>
+              </div>
+
+              <div class="result-box">
+                <span>En iyi</span>
+                <strong id="finalBest">0</strong>
+              </div>
+
+            </div>
+
+            <p id="resultMessage" class="result-message"></p>
+
+            <button
+              id="restartButton"
+              class="primary-button"
+              type="button"
+            >
+              TEKRAR OYNA
+            </button>
+
+            <button
+              id="homeButton"
+              class="secondary-button"
+              type="button"
+            >
+              ANA MENÜ
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- MOBİL KONTROLLER -->
+      <div class="mobile-controls">
+
+        <button
+          id="leftButton"
+          class="move-button"
+          type="button"
+          aria-label="Sola git"
+        >
+          ‹
+        </button>
+
+        <div class="control-info">
+          <strong>Kaydır veya tuşları kullan</strong>
+          <span>Enerjiyi topla • Glitch'ten kaç</span>
+        </div>
+
+        <button
+          id="rightButton"
+          class="move-button"
+          type="button"
+          aria-label="Sağa git"
+        >
+          ›
+        </button>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <script src="game.js"></script>
+</body>
+</html>
